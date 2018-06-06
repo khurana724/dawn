@@ -3,7 +3,7 @@
 	<body>
 		<center>
 			<h2><u>THOR-AUTO</u><br></h2><h3>Task Management System</h3>
-			
+
 			<fieldset>
 				<form name = 'login_form' method = 'post'>
 					<table>
@@ -30,7 +30,7 @@
 				if(($detail['username']==$_POST['username']) && ($detail['password']==$_POST['password'])){
 					$_SESSION['name'] = $detail['member_name'];
 					$_SESSION['user'] = $detail['username'];
-					header('Location: home.php');
+					header('Location: pr.php');
 				}
 			}
 			echo "Incorrect Username/Password";
