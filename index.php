@@ -24,7 +24,7 @@
 	<?php
 		include('config.inc');
 		if(isset($_POST['username'])){
-			$row = select_all('login_details');
+			$row = select_all('login-details');
 			for($n=0;$n<sizeof($row);$n++){
 				$detail = $row[$n];
 				if(($detail['username']==$_POST['username']) && ($detail['password']==$_POST['password'])){
