@@ -10,7 +10,7 @@ include 'config.inc';
 		<br>
 		<fieldset>
 			<h4 align = 'center'>All Things PR</h4>
-			<div id = 'sec1' style='float: left; width: 100%'>
+			<div id = 'new-pr-section' style='float: left; width: 40%'>
 				<fieldset><h3>New PR Details:</h3>
 					<form name='new-pr' method="post">
 						<table>
@@ -27,7 +27,13 @@ include 'config.inc';
 						}
 					?>
 				</fieldset></br>
-
+			</div>
+			<div id = 'frame-holder' style='float: left; width: 60%'>
+				<fieldset>
+					<iframe src="iframe_blank_page.html" name="link-frame" height="28%" width="100%"></iframe>
+				</fieldset>
+			</div>
+			<div id = 'pr-details-section' style='float: left; width: 100%'>
 				<fieldset><h3>Currently Opened PR's from my account:</h3>
 					<table border=1>
 					<th>Jira Ticket ID</th><th>Jira Summary</th><th>PR Link</th><th>PR Branch</th><th>Action</th>
@@ -36,7 +42,12 @@ include 'config.inc';
 						for($i=0; $i < sizeof($opened_pr); $i++){
 							echo "<tr>";
 							echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][2]."</td><td>".$opened_pr[$i][3]."</td>";
-							echo "<td><a href='#'>Log Hours</a> <a href='#'>Close PR</a> <a href='#'>Edit PR Details</a> <a href='#'>Log Review</a> </td>";
+							echo "<td>";
+								echo "<a href='log_hours.php?jira=".$opened_pr[$i][0]."' target='link-frame'>Log Hours</a> ";
+								echo "<a href='close_pr.php?jira=".$opened_pr[$i][0]."'>Close PR</a> ";
+								echo "<a href='edit_pr.php?jira=".$opened_pr[$i][0]."' target='link-frame'>Edit PR Details</a> ";
+								echo "<a href='log_review.php?jira=".$opened_pr[$i][0]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
+							echo "</td>";
 							echo "</tr>";
 						}
 					?>
