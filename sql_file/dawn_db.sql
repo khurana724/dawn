@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 06, 2018 at 08:11 PM
+-- Generation Time: Jun 11, 2018 at 03:46 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -54,19 +54,35 @@ DROP TABLE IF EXISTS `pr-details`;
 CREATE TABLE IF NOT EXISTS `pr-details` (
   `jira-ticket` varchar(50) NOT NULL,
   `jira-summary` varchar(1000) NOT NULL,
+  `pr-no` varchar(10) NOT NULL,
   `pr-link` varchar(50) NOT NULL,
   `pr-branch` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
-  PRIMARY KEY (`pr-link`)
+  PRIMARY KEY (`pr-no`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pr-details`
 --
 
-INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-link`, `pr-branch`, `username`) VALUES
-('QE-1730', 'Verify the vod playing event', 'https://git-aws.internal.justin.tv/player-ui/3456', 'QE-1730-vod-playing-event', 'vkhurana'),
-('QE-1729', 'Verify the stream playing event', 'https://git-aws.internal.justin.tv/player-ui/3466', 'QE-1730-vod-playing', 'vkhurana');
+INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-no`, `pr-link`, `pr-branch`, `username`) VALUES
+('QE-1730', 'Verify the vod playing event', '3456', 'https://git-aws.internal.justin.tv/player-ui/3456', 'QE-1730-vod-playing-event', 'vkhurana'),
+('QE-1729', 'Verify the stream playing event', '3466', 'https://git-aws.internal.justin.tv/player-ui/3466', 'QE-1730-vod-playing', 'vkhurana');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pr-hours`
+--
+
+DROP TABLE IF EXISTS `pr-hours`;
+CREATE TABLE IF NOT EXISTS `pr-hours` (
+  `pr-no` varchar(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `hours-logged` int(20) NOT NULL,
+  PRIMARY KEY (`pr-no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

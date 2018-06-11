@@ -22,8 +22,10 @@ include 'config.inc';
 						</table>
 					</form>
 					<?php
-						if(isset($_POST['jira-ticket'])){
-							insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-branch', 'username'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $_POST['pr-branch'], $_SESSION['user']], 'pr-details');
+						if(isset($_POST['jira-ticket'])) {
+							$slash_pos = strpos_all($_POST['pr-link'], '/');
+							$pr_number = str_replace('/', '', substr($_POST['pr-link'], $slash_pos[3]));
+							insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-number', 'pr-branch', 'username'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], $_SESSION['user']], 'pr-details');
 						}
 					?>
 				</fieldset></br>
@@ -41,12 +43,12 @@ include 'config.inc';
 						$opened_pr = select_all('pr-details', ['username', $_SESSION['user']]);
 						for($i=0; $i < sizeof($opened_pr); $i++){
 							echo "<tr>";
-							echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][2]."</td><td>".$opened_pr[$i][3]."</td>";
+							echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][3]."</td><td>".$opened_pr[$i][4]."</td>";
 							echo "<td>";
-								echo "<a href='log_hours.php?jira=".$opened_pr[$i][0]."' target='link-frame'>Log Hours</a> ";
-								echo "<a href='close_pr.php?jira=".$opened_pr[$i][0]."'>Close PR</a> ";
-								echo "<a href='edit_pr.php?jira=".$opened_pr[$i][0]."' target='link-frame'>Edit PR Details</a> ";
-								echo "<a href='log_review.php?jira=".$opened_pr[$i][0]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
+								echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Log Hours</a> ";
+								echo "<a href='close_pr.php?pr=".$opened_pr[$i][2]."'>Close PR</a> ";
+								echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Edit PR Details</a> ";
+								echo "<a href='log_review.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
 							echo "</td>";
 							echo "</tr>";
 						}
