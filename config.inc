@@ -9,4 +9,5 @@ mysql_connect($hostname, $username, $password) or DIE('Connection to host is fai
 mysql_select_db($dbname) or DIE('Database name is not available!');
 include('db_methods/sql_methods.php');
 include('php_helpers/helpers.php');
+date_default_timezone_set('UTC');
 ?>
