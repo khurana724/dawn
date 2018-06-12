@@ -1,5 +1,5 @@
 <?php
-	function resolve_where_clause($where_clause=[], $where_condition){
+	function resolve_where_clause($where_clause=[], $where_condition, $custom_where=''){
 		$where_string='';
 		for($i=0;$i<sizeof($where_clause);$i=$i+2){
 			if($i==0){
@@ -9,14 +9,17 @@
 				$where_string = $where_string." ".$where_condition." `".$where_clause[$i]."`='".$where_clause[$i+1]."'";
 			}
 		}
+		if($custom_where != '') {
+			$where_string = $where_string." ".$where_condition." ".$custom_where;
+		}
 		return $where_string;
 	}
 
-	function select_all($table_name,$where_clause=[],$where_condition='AND'){
+	function select_all($table_name, $where_clause=[], $where_condition='AND', $custom_where=''){
 		$query = "SELECT * FROM `".$table_name."`";
 		$where_string = '';
 		if($where_clause!=[]){
-			$where_string = resolve_where_clause($where_clause, $where_condition);
+			$where_string = resolve_where_clause($where_clause, $where_condition, $custom_where);
 			$query = $query." WHERE ".$where_string;
 		}
 		$result = mysql_query($query) or DIE(mysql_error());
@@ -27,7 +30,7 @@
 		return $result_array;
 	}
 
-	function select_fields($fields=[],$table_name,$where_clause=[],$where_condition='AND'){
+	function select_fields($fields=[], $table_name, $where_clause=[], $where_condition='AND', $custom_where=''){
 		$select_string = "";
 		for($i=0;$i<sizeof($fields);$i++){
 			if($i<sizeof($fields) && $i!=(sizeof($fields)-1)){
@@ -40,7 +43,7 @@
 		$query = "SELECT ".$select_string." FROM `".$table_name."`";
 		$where_string = '';
 		if($where_clause!=[]){
-			$where_string = resolve_where_clause($where_clause, $where_condition);
+			$where_string = resolve_where_clause($where_clause, $where_condition, $custom_where);
 			$query = $query." WHERE ".$where_string;
 		}
 		$result = mysql_query($query) or DIE(mysql_error());
@@ -51,7 +54,7 @@
 		return $result_array;
 	}
 
-	function insert($fields=[],$values=[],$table_name){
+	function insert($fields=[], $values=[], $table_name){
 		$field_string = ''; $value_string = '';
 		if(sizeof($fields)!=sizeof($values)){
 			DIE ("Inconsistent Field and Values. Please check your query");
@@ -77,7 +80,7 @@
 		mysql_query($query) or DIE(mysql_error());
 	}
 
-	function update($fields=[],$values=[],$table_name,$where_clause=[],$where_condition='AND'){
+	function update($fields=[], $values=[], $table_name, $where_clause=[], $where_condition='AND', $custom_where=''){
 		$update_string = '';
 		if(sizeof($fields)!=sizeof($values)){
 			DIE ("Inconsistent Field and Values. Please check your query");
@@ -93,18 +96,18 @@
 		$query = "UPDATE `$table_name` SET ".$update_string;
 		$where_string = '';
 		if($where_clause!=[]){
-			$where_string = resolve_where_clause($where_clause, $where_condition);
+			$where_string = resolve_where_clause($where_clause, $where_condition, $custom_where);
 			$query = $query." WHERE ".$where_string;
 		}
 		mysql_query($query) or DIE(mysql_error());
 	}
 
-	function delete_fields($table_name,$where_clause=[],$where_condition='AND'){
+	function delete_fields($table_name,$where_clause=[],$where_condition='AND', $custom_where=''){
 		if($where_clause==[]){
 			DIE("WHERE Clause cannot be empty for a DELETE statement");
 		}
 		$query = "DELETE FROM `$table_name`";
-		$where_string = resolve_where_clause($where_clause, $where_condition);
+		$where_string = resolve_where_clause($where_clause, $where_condition, $custom_where);
 		$query = $query." WHERE ".$where_string;
 		mysql_query($query) or DIE(mysql_error());
 	}
