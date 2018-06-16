@@ -48,7 +48,7 @@ include 'config.inc';
 								echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Log Hours</a> ";
 								echo "<a href='close_pr.php?pr=".$opened_pr[$i][2]."'>Close PR</a> ";
 								echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Edit PR Details</a> ";
-								echo "<a href='log_review.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
+								echo "<a href='log_review_login.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
 							echo "</td>";
 							echo "</tr>";
 						}
