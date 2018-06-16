@@ -1,6 +1,4 @@
-<?php
-include 'config.inc';
-?>
+<?php include 'config.inc'; ?>
 <html>
 <body>
   <fieldset>
