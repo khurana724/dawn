@@ -25,7 +25,7 @@ include 'config.inc';
 						if(isset($_POST['jira-ticket'])) {
 							$slash_pos = strpos_all($_POST['pr-link'], '/');
 							$pr_number = str_replace('/', '', substr($_POST['pr-link'], $slash_pos[3]));
-							insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-number', 'pr-branch', 'username'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], $_SESSION['user']], 'pr-details');
+							insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-number', 'pr-branch', 'username', 'pr-status'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], $_SESSION['user'], 0], 'pr-details');
 						}
 					?>
 				</fieldset></br>
@@ -36,19 +36,19 @@ include 'config.inc';
 				</fieldset>
 			</div>
 			<div id = 'pr-details-section' style='float: left; width: 100%'>
-				<fieldset><h3>Currently Opened PR's from my account:</h3>
+				<fieldset><h3>Currently Opened PR's from my account: (<a target='link-frame' href="archived_list.php?user=<?php echo $_SESSION['user']; ?>">Archived List</a>)</h3>
 					<table border=1>
 					<th>Jira Ticket ID</th><th>Jira Summary</th><th>PR Link</th><th>PR Branch</th><th>Action</th>
 					<?php
-						$opened_pr = select_all('pr-details', ['username', $_SESSION['user']]);
+						$opened_pr = select_all('pr-details', ['username', $_SESSION['user'], 'pr-status', 0]);
 						for($i=0; $i < sizeof($opened_pr); $i++){
 							echo "<tr>";
 							echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][3]."</td><td>".$opened_pr[$i][4]."</td>";
 							echo "<td>";
 								echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/hourglass.jpg' title='Log Hours' alt='Log Hours'></a> ";
-								echo "<a href='archive_pr.php?pr=".$opened_pr[$i][2]."'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a> ";
 								echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/edit.png' alt='Edit PR Details' title='Edit PR Details'></a> ";
-								echo "<a href='log_review_login.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'><img src='images/review.jpeg' title='Log Review' alt='Log Review'></a>";
+								echo "<a href='log_review_login.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'><img src='images/review.jpeg' title='Log Review' alt='Log Review'></a> ";
+								echo "<a href='archive_pr.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a>";
 							echo "</td>";
 							echo "</tr>";
 						}
