@@ -76,7 +76,6 @@
 			}
 		}
 		$query = "INSERT INTO `".$table_name."` (".$field_string.") VALUES (".$value_string.")";
-		echo $query;
 		mysql_query($query) or DIE(mysql_error());
 	}
 
