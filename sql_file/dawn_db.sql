@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 11, 2018 at 03:46 AM
+-- Generation Time: Jun 17, 2018 at 06:47 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `pr-details` (
   `pr-link` varchar(50) NOT NULL,
   `pr-branch` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `pr-status` int(2) NOT NULL,
   PRIMARY KEY (`pr-no`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -65,9 +66,9 @@ CREATE TABLE IF NOT EXISTS `pr-details` (
 -- Dumping data for table `pr-details`
 --
 
-INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-no`, `pr-link`, `pr-branch`, `username`) VALUES
-('QE-1730', 'Verify the vod playing event', '3456', 'https://git-aws.internal.justin.tv/player-ui/3456', 'QE-1730-vod-playing-event', 'vkhurana'),
-('QE-1729', 'Verify the stream playing event', '3466', 'https://git-aws.internal.justin.tv/player-ui/3466', 'QE-1730-vod-playing', 'vkhurana');
+INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-no`, `pr-link`, `pr-branch`, `username`, `pr-status`) VALUES
+('QE-1730', 'Verify the VOD playing event', '3456', 'https://git-aws.internal.justin.tv/player-ui/3456', 'QE-1730-vod-playing-event', 'vkhurana', 0),
+('QE-1729', 'Verify the stream playing event', '3466', 'https://git-aws.internal.justin.tv/player-ui/3466', 'QE-1730-vod-playing', 'vkhurana', 0);
 
 -- --------------------------------------------------------
 
@@ -83,6 +84,35 @@ CREATE TABLE IF NOT EXISTS `pr-hours` (
   `hours-logged` int(20) NOT NULL,
   PRIMARY KEY (`pr-no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pr-hours`
+--
+
+INSERT INTO `pr-hours` (`pr-no`, `username`, `date`, `hours-logged`) VALUES
+('3456', 'vkhurana', '2018-06-12', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pr-logs`
+--
+
+DROP TABLE IF EXISTS `pr-logs`;
+CREATE TABLE IF NOT EXISTS `pr-logs` (
+  `pr-no` varchar(20) NOT NULL,
+  `reviewer` varchar(20) NOT NULL,
+  `reviewer-remarks` longtext NOT NULL,
+  `date` date NOT NULL,
+  PRIMARY KEY (`pr-no`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pr-logs`
+--
+
+INSERT INTO `pr-logs` (`pr-no`, `reviewer`, `reviewer-remarks`, `date`) VALUES
+('3456', 'Vivek Khurana', 'All is well!!!!', '2018-06-16');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
