@@ -45,10 +45,10 @@ include 'config.inc';
 							echo "<tr>";
 							echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][3]."</td><td>".$opened_pr[$i][4]."</td>";
 							echo "<td>";
-								echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Log Hours</a> ";
-								echo "<a href='close_pr.php?pr=".$opened_pr[$i][2]."'>Close PR</a> ";
-								echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'>Edit PR Details</a> ";
-								echo "<a href='log_review_login.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'>Log Review</a>";
+								echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/hourglass.jpg' title='Log Hours' alt='Log Hours'></a> ";
+								echo "<a href='archive_pr.php?pr=".$opened_pr[$i][2]."'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a> ";
+								echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/edit.png' alt='Edit PR Details' title='Edit PR Details'></a> ";
+								echo "<a href='log_review_login.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."' target='link-frame'><img src='images/review.jpeg' title='Log Review' alt='Log Review'></a>";
 							echo "</td>";
 							echo "</tr>";
 						}
