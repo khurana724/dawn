@@ -1,39 +1,39 @@
+<?php
+	include 'config.inc';
+?>
 <html>
-	<title>UTMS</title>
+	<title>THOR-AUTO : : TMS</title>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		$(document).ready(function(){
+			$("#triple-lines").click(function(){
+					$("#links").toggle();
+			});
+		});
+		</script>
+	</head>
 	<body>
-		<center>
-			<h2><u>THOR-AUTO</u><br></h2><h3>Task Management System</h3>
-
-			<fieldset>
-				<form name = 'login_form' method = 'post'>
-					<table>
-						<tr>
-							<td><strong>Username:</strong></td><td><input type = 'text' name = 'username' id = 'username'></td>
-						</tr>
-						<tr>
-							<td><strong>Password:</strong></td><td><input type = 'password' name = 'password' id = 'password'></td>
-						</tr>
-						<tr>
-							<td></td><td><br><input type = 'submit' name = 'login' id = 'login' value = 'Login'></td>
-						</tr>
-					</table>
-				</form>
-			</fieldset>
-		</center>
+		<fieldset>
+			<h1 align='right'>Welcome, Vivek <img id='triple-lines' src="images/lines.jpg" alt='Show/Hide Menu' title="Show/Hide Menu" align='right'/></h1>
+			<div id="links" style="display:block">
+				<fieldset>
+					<strong>
+						<a target='main-iframe' href="pr.php">PR Details</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="automation.php">Automated Test Cases</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="bugs.php">Bug Details</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="additions.php">Additional Hours</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="weekly.php">Weekly Report</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="monthly.php">Monthly Report</a>&nbsp;&nbsp;
+					</strong>
+				</fieldset>
+			</div>
+		</fieldset>
+		<br>
+    <fieldset>
+      <div id='main-frame'>
+        <iframe src="pr.php" name="main-iframe"style="width: 100%; height: 500px"></iframe>
+      </div>
+    </fieldset>
 	</body>
-	<?php
-		include('config.inc');
-		if(isset($_POST['username'])){
-			$row = select_all('login-details');
-			for($n=0;$n<sizeof($row);$n++){
-				$detail = $row[$n];
-				if(($detail['username']==$_POST['username']) && ($detail['password']==$_POST['password'])){
-					$_SESSION['name'] = $detail['member_name'];
-					$_SESSION['user'] = $detail['username'];
-					header('Location: pr.php');
-				}
-			}
-			echo "Incorrect Username/Password";
-		}
-	?>
 </html>
