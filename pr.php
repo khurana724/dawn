@@ -19,7 +19,7 @@
 					if(isset($_POST['jira-ticket'])) {
 						$slash_pos = strpos_all($_POST['pr-link'], '/');
 						$pr_number = str_replace('/', '', substr($_POST['pr-link'], $slash_pos[3]));
-						insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-no', 'pr-branch', 'username', 'pr-status'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], $_SESSION['user'], 0], 'pr-details');
+						insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-no', 'pr-branch', 'pr-status'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], 0], 'pr-details');
 					}
 				?>
 			</fieldset></br>
@@ -30,18 +30,18 @@
 			</fieldset>
 		</div>
 		<div id = 'pr-details-section' style='float: left; width: 100%'>
-			<fieldset><h3>Currently Opened PR's: (<a target='link-frame' href="archived_pr.php?user=<?php echo $_SESSION['user']; ?>">Archived List</a>)</h3>
+			<fieldset><h3>Currently Opened PR's: <a target='link-frame' href="archived_pr.php?user=<?php echo $_SESSION['user']; ?>"><img src='images/archive_list.png' alt='Archived List' title="Archived List" /></a></h3>
 				<table border=1>
 				<th>Jira Ticket ID</th><th>Jira Summary</th><th>PR Link</th><th>PR Branch</th><th>Action</th>
 				<?php
-					$opened_pr = select_all('pr-details', ['username', $_SESSION['user'], 'pr-status', 0]);
+					$opened_pr = select_all('pr-details', ['pr-status', 0]);
 					for($i=0; $i < sizeof($opened_pr); $i++){
 						echo "<tr>";
 						echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][3]."</td><td>".$opened_pr[$i][4]."</td>";
 						echo "<td>";
 							echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/hourglass.jpg' title='Log Hours' alt='Log Hours'></a> ";
 							echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/edit.png' alt='Edit PR Details' title='Edit PR Details'></a> ";
-							echo "<a href='actions.php?pr=".$opened_pr[$i][2]."&user=".$_SESSION['user']."&status=1'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a>";
+							echo "<a href='actions.php?pr=".$opened_pr[$i][2]."&action=pr&status=1'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a>";
 						echo "</td>";
 						echo "</tr>";
 					}

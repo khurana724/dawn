@@ -19,12 +19,15 @@
 			<div id="links" style="display:block">
 				<fieldset>
 					<strong>
+            OPS .:|{|:.
 						<a target='main-iframe' href="pr.php">PR Details</a>&nbsp;&nbsp;
 						<a target='main-iframe' href="automation.php">Automated Test Cases</a>&nbsp;&nbsp;
 						<a target='main-iframe' href="bugs.php">Bug Details</a>&nbsp;&nbsp;
-						<a target='main-iframe' href="additions.php">Additional Hours</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="additions.php">Additional Hours</a>&nbsp;&nbsp;.:|}|:.
+            REPORTS .:|{|:.
+            <a target='main-iframe' href="daily.php">Daily Report</a>&nbsp;&nbsp;
 						<a target='main-iframe' href="weekly.php">Weekly Report</a>&nbsp;&nbsp;
-						<a target='main-iframe' href="monthly.php">Monthly Report</a>&nbsp;&nbsp;
+						<a target='main-iframe' href="monthly.php">Monthly Report</a>&nbsp;&nbsp;.:|}|:.
 					</strong>
 				</fieldset>
 			</div>
