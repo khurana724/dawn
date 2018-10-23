@@ -32,4 +32,10 @@
     delete_fields('automation-details', ['jira-ticket', $_GET['ticket']]);
     header('Location: iframe_blank_page.html');
   }
+
+  // Bug Deletion
+  if($_GET['delete'] == 'true' && $_GET['action'] == 'bug') {
+    delete_fields('bug-details', ['jira-ticket', $_GET['ticket']]);
+    header('Location: bugs.php');
+  }
 ?>

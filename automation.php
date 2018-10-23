@@ -4,7 +4,7 @@
 <html>
 	<body>
 		<h4 align='center'>Automation in Swing</h4>
-    <div id='new-pr-section' style='float: left; width: 40%'>
+    <div id='new-automation-section' style='float: left; width: 40%'>
       <fieldset>
         <h3>New Test Cases:</h3>
         <form name='new-tests' method="post">
