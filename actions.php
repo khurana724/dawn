@@ -3,11 +3,11 @@
 
   // PR Archiving and Unarchiving
   if ($_GET['status'] == 1 && $_GET['action'] == 'pr') {
-    update(['pr-status'], [1], 'pr-details', ['pr-no', $_GET['pr']]);
+    update(['pr-status', 'archive-date'], [1, date('Y-m-d')], 'pr-details', ['pr-no', $_GET['pr']]);
     header('Location: pr.php');
   }
   elseif ($_GET['status'] == 0 && $_GET['action'] == 'pr') {
-    update(['pr-status'], [0], 'pr-details', ['pr-no', $_GET['pr']]);
+    update(['pr-status', 'archive-date'], [0, '9999-09-09'], 'pr-details', ['pr-no', $_GET['pr']]);
     header('Location: iframe_blank_page.html');
   }
 

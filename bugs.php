@@ -39,6 +39,7 @@
 						echo "<td><center>".$opened_bugs[$i][0]."</center></td><td>".$opened_bugs[$i][1]."</td><td><center>".$opened_bugs[$i][3]."</center></td>";
 						echo "<td>";
 							echo "<a href='edit_bug_details.php?ticket=".$opened_bugs[$i][0]."' target='link-frame'><img src='images/edit.png' alt='Edit Bug Details' title='Edit Bug Details'></a> ";
+							echo "<img src='images/separator.png' />";
 							echo "<a href='actions.php?ticket=".$opened_bugs[$i][0]."&action=bug&delete=true'><img src='images/delete.jpg' title='Delete Bug' alt='Delete Bug'></a>";
 						echo "</td>";
 						echo "</tr>";

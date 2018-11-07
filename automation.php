@@ -40,7 +40,9 @@
 						echo "<td><center>".$opened_automations[$i][0]."</center></td><td>".$opened_automations[$i][1]."</td><td>".str_replace(';','<br>',$opened_automations[$i][2])."</td><td><center>".$opened_automations[$i][3]."</center></td>";
 						echo "<td>";
 							echo "<a href='automation_hours.php?ticket=".$opened_automations[$i][0]."' target='link-frame'><img src='images/hourglass.jpg' title='Log Automation Hours' alt='Log Automation Hours'></a> ";
+							echo "<img src='images/separator.png' />";
 							echo "<a href='edit_automation_details.php?ticket=".$opened_automations[$i][0]."' target='link-frame'><img src='images/edit.png' alt='Edit Automation Details' title='Edit Automation Details'></a> ";
+							echo "<img src='images/separator.png' />";
 							echo "<a href='actions.php?ticket=".$opened_automations[$i][0]."&action=automation&status=1'><img src='images/archive.png' title='Archive Automation' alt='Archive Automation'></a>";
 						echo "</td>";
 						echo "</tr>";

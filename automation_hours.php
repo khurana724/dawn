@@ -19,7 +19,25 @@
           else { echo $logged_automation_hours[0][0]; }
           ?>
         </td></tr>
-        <tr><td>Log Hours:</td><td><input type="text" name="log-hours" /></td></tr>
+        <tr><td>Log Automation Hours:</td><td><input type="text" name="log-hours" /></td></tr>
+        <tr><td colspan="2">&nbsp;</td></tr>
+        <tr><td>Refactored Hours Logged Last Month: </td>
+          <td>
+            <?php
+            $lm_am_hours = select_fields(['refactor-hours'], 'automation-hours', ['jira-ticket', $_GET['ticket']], 'AND', "`date` LIKE '".date('Y-m', strtotime(date('Y-m-1')." -1 month"))."%'");
+            if(sizeof($lm_am_hours) == 0) { echo '0'; }
+            else { echo $lm_am_hours[0][0]; }
+            ?>
+          </td></tr>
+          <tr><td>Currently Logged Hours This Month: </td>
+            <td>
+              <?php
+              $logged_automation_hours = select_fields(['refactor-hours'], 'automation-hours', ['jira-ticket', $_GET['ticket']], 'AND', "`date` LIKE '".date('Y-m')."%'");
+              if(sizeof($logged_automation_hours) == 0) { echo '0'; }
+              else { echo $logged_automation_hours[0][0]; }
+              ?>
+            </td></tr>
+            <tr><td>Log Refactor Automation Hours:</td><td><input type="text" name="log-refactor-hours" /></td></tr>
       </table>
       <br><input type="submit" name="save-logged-hours" value='Save Logged Hours' />
     </form>

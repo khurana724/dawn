@@ -12,6 +12,7 @@
               echo "<td><center>".$archived_automations[$i][0]."</center></td><td>".$archived_automations[$i][1]."</td><td>".str_replace(';','<br>',$archived_automations[$i][2])."</td><td><center>".$archived_automations[$i][3]."</center></td>";
               echo "<td>";
                 echo "<a href='actions.php?ticket=".$archived_automations[$i][0]."&action=automation&status=0'><img src='images/archive.png' title='Unarchive Automation' alt='Unarchive Automation'></a>";
+                echo "<img src='images/separator.png' />";
                 echo "<a href='actions.php?ticket=".$archived_automations[$i][0]."&action=automation&delete=true'><img src='images/delete.jpg' title='Delete Automation' alt='Delete Automation'></a>";
               echo "</td>";
               echo "</tr>";

@@ -12,6 +12,7 @@
               echo "<td>".$archived_pr[$i][0]."</td><td>".$archived_pr[$i][1]."</td><td>".$archived_pr[$i][3]."</td><td>".$archived_pr[$i][4]."</td>";
               echo "<td>";
                 echo "<a href='actions.php?pr=".$archived_pr[$i][2]."&action=pr&status=0'><img src='images/archive.png' title='Unarchive PR' alt='Unarchive PR'></a>";
+                echo "<img src='images/separator.png' />";
                 echo "<a href='actions.php?pr=".$archived_pr[$i][2]."&action=pr&delete=true'><img src='images/delete.jpg' title='Delete PR' alt='Delete PR'></a>";
               echo "</td>";
               echo "</tr>";

@@ -40,7 +40,9 @@
 						echo "<td>".$opened_pr[$i][0]."</td><td>".$opened_pr[$i][1]."</td><td>".$opened_pr[$i][3]."</td><td>".$opened_pr[$i][4]."</td>";
 						echo "<td>";
 							echo "<a href='log_hours.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/hourglass.jpg' title='Log Hours' alt='Log Hours'></a> ";
+							echo "<img src='images/separator.png' />";
 							echo "<a href='edit_pr.php?pr=".$opened_pr[$i][2]."' target='link-frame'><img src='images/edit.png' alt='Edit PR Details' title='Edit PR Details'></a> ";
+							echo "<img src='images/separator.png' />";
 							echo "<a href='actions.php?pr=".$opened_pr[$i][2]."&action=pr&status=1'><img src='images/archive.png' title='Archive PR' alt='Archive PR'></a>";
 						echo "</td>";
 						echo "</tr>";
