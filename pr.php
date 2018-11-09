@@ -19,7 +19,7 @@
 					if(isset($_POST['jira-ticket'])) {
 						$slash_pos = strpos_all($_POST['pr-link'], '/');
 						$pr_number = str_replace('/', '', substr($_POST['pr-link'], $slash_pos[3]));
-						insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-no', 'pr-branch', 'pr-status'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], 0], 'pr-details');
+						insert(['jira-ticket', 'jira-summary', 'pr-link', 'pr-no', 'pr-branch', 'pr-status', 'creation-date', 'archive-date'], [$_POST['jira-ticket'], $_POST['jira-summary'], $_POST['pr-link'], $pr_number, $_POST['pr-branch'], 0, date('Y-m-d'), '9999-09-09'], 'pr-details');
 					}
 				?>
 			</fieldset></br>

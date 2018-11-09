@@ -25,9 +25,9 @@
 						<a target='main-iframe' href="bugs.php">Bug Details</a>&nbsp;&nbsp;
 						<a target='main-iframe' href="additions.php">Additional Hours</a>&nbsp;&nbsp;.:|}|:.
             REPORTS .:|{|:.
-            <a target='main-iframe' href="daily.php">Daily Report</a>&nbsp;&nbsp;
-						<a target='main-iframe' href="weekly.php">Weekly Report</a>&nbsp;&nbsp;
-						<a target='main-iframe' href="monthly.php">Monthly Report</a>&nbsp;&nbsp;.:|}|:.
+            <a target='_blank' href="reports/daily.php">Daily Report</a>&nbsp;&nbsp;
+						<a target='_blank' href="reports/weekly.php">Weekly Report</a>&nbsp;&nbsp;
+						<a target='_blank' href="reports/monthly.php">Monthly Report</a>&nbsp;&nbsp;.:|}|:.
 					</strong>
 				</fieldset>
 			</div>
