@@ -82,6 +82,7 @@
 			}
 		}
 		$query = "INSERT INTO `".$table_name."` (".$field_string.") VALUES (".$value_string.")";
+		echo $query;
 		mysql_query($query) or DIE(mysql_error());
 	}
 
@@ -107,6 +108,7 @@
 		if($where_clause==[] && $custom_where!='') {
 			$query = $query." WHERE ".$custom_where;
 		}
+		echo $query;
 		mysql_query($query) or DIE(mysql_error());
 	}
 
@@ -117,6 +119,7 @@
 		$query = "DELETE FROM `$table_name`";
 		$where_string = resolve_where_clause($where_clause, $where_condition, $custom_where);
 		$query = $query." WHERE ".$where_string;
+		echo $query;
 		mysql_query($query) or DIE(mysql_error());
 	}
 ?>
