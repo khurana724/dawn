@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 21, 2018 at 11:14 AM
+-- Generation Time: Nov 11, 2018 at 03:43 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -25,6 +25,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `additions`
+--
+
+DROP TABLE IF EXISTS `additions`;
+CREATE TABLE IF NOT EXISTS `additions` (
+  `type` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `hours` float NOT NULL,
+  `date` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `automation-details`
 --
 
@@ -39,13 +53,6 @@ CREATE TABLE IF NOT EXISTS `automation-details` (
   PRIMARY KEY (`jira-ticket`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `automation-details`
---
-
-INSERT INTO `automation-details` (`jira-ticket`, `jira-summary`, `automated-test-cases`, `count`, `date`, `automation-status`) VALUES
-('VP-4242', 'Test Summary for Jira', 'Test Case 1;Test Case 2;Test Case 3', 3, '2018-10-20', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -57,6 +64,23 @@ CREATE TABLE IF NOT EXISTS `automation-hours` (
   `jira-ticket` varchar(25) NOT NULL,
   `date` date NOT NULL,
   `hours-logged` int(10) NOT NULL,
+  `refactor-hours` int(10) NOT NULL,
+  `stage` varchar(50) NOT NULL,
+  PRIMARY KEY (`jira-ticket`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bug-details`
+--
+
+DROP TABLE IF EXISTS `bug-details`;
+CREATE TABLE IF NOT EXISTS `bug-details` (
+  `jira-ticket` varchar(50) NOT NULL,
+  `jira-summary` varchar(1000) NOT NULL,
+  `date` date NOT NULL,
+  `bug-logged-hours` float NOT NULL,
   PRIMARY KEY (`jira-ticket`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -91,20 +115,14 @@ INSERT INTO `login-details` (`numb`, `username`, `password`, `member_name`) VALU
 DROP TABLE IF EXISTS `pr-details`;
 CREATE TABLE IF NOT EXISTS `pr-details` (
   `jira-ticket` varchar(50) NOT NULL,
-  `jira-summary` varchar(1000) NOT NULL,
   `pr-no` varchar(10) NOT NULL,
   `pr-link` varchar(50) NOT NULL,
   `pr-branch` varchar(100) NOT NULL,
   `pr-status` int(2) NOT NULL,
+  `creation-date` date DEFAULT NULL,
+  `archive-date` date DEFAULT NULL,
   PRIMARY KEY (`pr-no`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pr-details`
---
-
-INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-no`, `pr-link`, `pr-branch`, `pr-status`) VALUES
-('QE-1730', 'Verify the VOD playing event', '3456', 'https://git-aws.internal.justin.tv/player-ui/3456', 'QE-1730-vod-playing-event', 0);
 
 -- --------------------------------------------------------
 
@@ -114,19 +132,12 @@ INSERT INTO `pr-details` (`jira-ticket`, `jira-summary`, `pr-no`, `pr-link`, `pr
 
 DROP TABLE IF EXISTS `pr-hours`;
 CREATE TABLE IF NOT EXISTS `pr-hours` (
-  `pr-no` varchar(10) NOT NULL,
+  `pr-no` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `hours-logged` int(20) NOT NULL,
   PRIMARY KEY (`pr-no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `pr-hours`
---
-
-INSERT INTO `pr-hours` (`pr-no`, `username`, `date`, `hours-logged`) VALUES
-('3456', 'vkhurana', '2018-06-12', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
